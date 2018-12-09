@@ -34,18 +34,21 @@ double find_max(double ivalue1, double ivalue2) {
     return biggerivalue;
 }
 
-bool determine_equal(double ivall1, double ivall2) {
+int determine_equal(double ivall1, double ivall2, bool enable_almost_equal) {
     
-    //compare two values and determine if it is equal. If true, return true, otherwise, return false
+    //compare two values and determine if it is equal. If true, return 1, otherwise, return 0
+    //additional: if the values are almost equal (with the difference of 0.1 and below), return 2
 
-    bool returnvalue1 = false;
+    int returnvalue1 = 0;
     
     if (ivall1 == ivall2) {
-        returnvalue1 = true;
+        returnvalue1 = 1;
+    } else if ((enable_almost_equal == true) && (find_max(ivall1, ivall2) - find_min(ivall1, ivall2) <= 0.01)){
+        returnvalue1 = 2;
     } else if (ivall1 != ivall2) {
-        returnvalue1 = false;
+        returnvalue1 = 0;
     } else {
-        returnvalue1 = false;
+        returnvalue1 = 0;
     }
 
     return returnvalue1;
