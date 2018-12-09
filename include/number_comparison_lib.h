@@ -21,7 +21,7 @@ double find_max(double ivalue1, double ivalue2) {
 
     //find the bigger value of two values
 
-    int biggerivalue = 0;
+    double biggerivalue = 0;
 
     if (ivalue1 > ivalue2) {
         biggerivalue = ivalue1;
