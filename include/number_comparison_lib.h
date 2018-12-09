@@ -1,10 +1,10 @@
 
 
-int find_min(int ival1, int ival2) {
+double find_min(double ival1, double ival2) {
     
     //finds the smaller value of two values
 
-    int smallerival = 0;
+    double smallerival = 0.0;
     
     if (ival1 > ival2) {
         smallerival = ival2;
@@ -17,7 +17,7 @@ int find_min(int ival1, int ival2) {
     return smallerival;
 }
 
-int find_max(int ivalue1, int ivalue2) {
+double find_max(double ivalue1, double ivalue2) {
 
     //find the bigger value of two values
 
@@ -32,4 +32,21 @@ int find_max(int ivalue1, int ivalue2) {
     }
 
     return biggerivalue;
+}
+
+bool determine_equal(double ivall1, double ivall2) {
+    
+    //compare two values and determine if it is equal. If true, return true, otherwise, return false
+
+    bool returnvalue1 = false;
+    
+    if (ivall1 == ivall2) {
+        returnvalue1 = true;
+    } else if (ivall1 != ivall2) {
+        returnvalue1 = false;
+    } else {
+        returnvalue1 = false;
+    }
+
+    return returnvalue1;
 }
