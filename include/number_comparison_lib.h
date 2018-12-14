@@ -34,7 +34,7 @@ double find_max(double ivalue1, double ivalue2) {
     return biggerivalue;
 }
 
-int determine_equal(double ivall1, double ivall2, bool enable_almost_equal) {
+int determine_equal(double ivall1, double ivall2, bool enable_almost_equal = false) {
     
     //compare two values and determine if it is equal. If true, return 1, otherwise, return 0
     //additional: if the values are almost equal (with the difference of 0.1 and below), return 2
