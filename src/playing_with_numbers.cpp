@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/number_comparison_lib.h"
+#include <limits>
 
 int main() {
     
@@ -43,6 +44,45 @@ int main() {
         default:
             std::cout << "ERROR: This message was not supposed to show up. Try again or report the bug." << std::endl;
             break;
+    }
+
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    //conversion factors
+    constexpr double meter_to_cm = 100.00;
+    constexpr double inch_to_cm = 2.54;
+    constexpr double feet_to_in = 12.00;
+
+    std::string unit_indicator = " "; //unit indicator (such as in, ft, cm, m)
+    std::cout << "\nEnter a number, followed by a unit indicator (eg. m, cm, ft, in). " << std::endl;
+
+    //read input (value + unit indicator)
+    for (double value_tmp = 0; std::cin >> value_tmp >> unit_indicator;) {
+
+        if ((unit_indicator == "cm") || (unit_indicator == "CM")) {
+
+            std::cout << value_tmp << " centimeters equals " << value_tmp / meter_to_cm << " meters, ";
+            std::cout << (value_tmp / inch_to_cm) / feet_to_in << " feet, " << value_tmp / inch_to_cm << " inches." << std::endl;
+
+        } else if ((unit_indicator == "m") || (unit_indicator == "M")) {
+
+            std::cout << value_tmp << " meters equals " << value_tmp * meter_to_cm << " centimeters, " << ((value_tmp * meter_to_cm) / inch_to_cm) / feet_to_in << " feet, ";
+            std::cout << (value_tmp * meter_to_cm) / inch_to_cm << " inches." << std::endl;
+
+        } else if ((unit_indicator == "ft") || (unit_indicator == "FT")) {
+
+            std::cout << value_tmp << " feet equals " << ((value_tmp * feet_to_in) * inch_to_cm) / meter_to_cm << " meters, " << (value_tmp * feet_to_in) * inch_to_cm << " centimeters, ";
+            std::cout << value_tmp * feet_to_in << " inches." << std::endl;
+
+        } else if ((unit_indicator == "in") || (unit_indicator == "IN")) {
+            
+            std::cout << value_tmp << " inches equals " << (value_tmp * inch_to_cm) / meter_to_cm << " meters, " << value_tmp * inch_to_cm << " centimeters, ";
+            std::cout << value_tmp / feet_to_in << " feet." << std::endl;
+
+        } else {
+            std::cout << "ERROR: Not a recognised unit. Make sure to use either m, cm, ft or in. " << std::endl;
+        }
     }
 
     return 0;
