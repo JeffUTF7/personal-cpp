@@ -89,9 +89,11 @@ int main() {
             break; //break out of the loop immediately
         }
 
-        std::cout << value_tmp << " " << unit_indicator << " equals " << out_temp1 << " meters, " << out_temp2 << " centimeters, " << out_temp3 << " feet, "
+        std::cout << '\n' << value_tmp << " " << unit_indicator << " equals " << out_temp1 << " meters, " << out_temp2 << " centimeters, " << out_temp3 << " feet, "
         << out_temp4 << " inches."; 
     }
+
+    std::cout << std::endl;
 
     return 0;
 }
