@@ -56,33 +56,41 @@ int main() {
 
     std::string unit_indicator = " "; //unit indicator (such as in, ft, cm, m)
     std::cout << "\nEnter a number, followed by a unit indicator (eg. m, cm, ft, in). " << std::endl;
+        
+    //values to assign and output later
+    double out_temp1 = 0.0; //meters
+    double out_temp2 = 0.0; //centimeters
+    double out_temp3 = 0.0; //feet  
+    double out_temp4 = 0.0; //inches
 
-    //read input (value + unit indicator)
     for (double value_tmp = 0; std::cin >> value_tmp >> unit_indicator;) {
-
-        if ((unit_indicator == "cm") || (unit_indicator == "CM")) {
-
-            std::cout << value_tmp << " centimeters equals " << value_tmp / meter_to_cm << " meters, ";
-            std::cout << (value_tmp / inch_to_cm) / feet_to_in << " feet, " << value_tmp / inch_to_cm << " inches." << std::endl;
-
-        } else if ((unit_indicator == "m") || (unit_indicator == "M")) {
-
-            std::cout << value_tmp << " meters equals " << value_tmp * meter_to_cm << " centimeters, " << ((value_tmp * meter_to_cm) / inch_to_cm) / feet_to_in << " feet, ";
-            std::cout << (value_tmp * meter_to_cm) / inch_to_cm << " inches." << std::endl;
-
+        if ((unit_indicator == "m") || (unit_indicator == "M")) {
+            out_temp1 = value_tmp;
+            out_temp2 = value_tmp * meter_to_cm;
+            out_temp3 = ((value_tmp * meter_to_cm) / inch_to_cm) / feet_to_in;
+            out_temp4 = (value_tmp * meter_to_cm) / inch_to_cm;
+        } else if ((unit_indicator == "cm") || (unit_indicator == "CM")) {
+            out_temp1 = value_tmp / meter_to_cm;
+            out_temp2 = value_tmp;
+            out_temp3 = (value_tmp / inch_to_cm) / feet_to_in;
+            out_temp4 = value_tmp / inch_to_cm;
         } else if ((unit_indicator == "ft") || (unit_indicator == "FT")) {
-
-            std::cout << value_tmp << " feet equals " << ((value_tmp * feet_to_in) * inch_to_cm) / meter_to_cm << " meters, " << (value_tmp * feet_to_in) * inch_to_cm << " centimeters, ";
-            std::cout << value_tmp * feet_to_in << " inches." << std::endl;
-
+            out_temp1 = (value_tmp * feet_to_in * (inch_to_cm / meter_to_cm));
+            out_temp2 = (value_tmp * (feet_to_in * inch_to_cm));
+            out_temp3 = value_tmp;
+            out_temp4 = value_tmp * feet_to_in;
         } else if ((unit_indicator == "in") || (unit_indicator == "IN")) {
-            
-            std::cout << value_tmp << " inches equals " << (value_tmp * inch_to_cm) / meter_to_cm << " meters, " << value_tmp * inch_to_cm << " centimeters, ";
-            std::cout << value_tmp / feet_to_in << " feet." << std::endl;
-
+            out_temp1 = value_tmp * (inch_to_cm / meter_to_cm);
+            out_temp2 = value_tmp * inch_to_cm;
+            out_temp3 = value_tmp / feet_to_in;
+            out_temp4 = value_tmp;
         } else {
-            std::cout << "ERROR: Not a recognised unit. Make sure to use either m, cm, ft or in. " << std::endl;
+            std::cout << "No appropriate unit indicator detected. Exit." << std::endl;
+            break; //break out of the loop immediately
         }
+
+        std::cout << value_tmp << " " << unit_indicator << " equals " << out_temp1 << " meters, " << out_temp2 << " centimeters, " << out_temp3 << " feet, "
+        << out_temp4 << " inches."; 
     }
 
     return 0;
