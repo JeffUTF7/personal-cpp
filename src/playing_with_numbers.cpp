@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../include/number_comparison_lib.h"
 #include <limits>
+#include <vector>
 
 int main() {
     
@@ -65,6 +66,8 @@ int main() {
     double out_temp4 = 0.0; //inches
     double total_sum = 0.0; //total sum of values, in meters
 
+    std::vector<double> values_in_meters; 
+
     //reuse temp_smallest_value and temp_biggest_value
     temp_smallest_value = 0.0;
     temp_biggest_value = 0.0;
@@ -110,20 +113,30 @@ int main() {
                 break;
         }
 
+        temp_smallest_value = find_min(out_temp1, previous_value_m); //compare current value with previous value
+        temp_biggest_value = find_max(out_temp1, previous_value_m); //compare current value with previous value
+
+        values_in_meters.push_back(out_temp1); //put the converted values (in meters) to vector values_in_meters
+
         total_sum += out_temp1; //store the total sum in meters
-        temp_smallest_value = find_min(out_temp1, previous_value_m);
-        temp_biggest_value = find_max(out_temp1, previous_value_m);
-        
+
         std::cout << '\n' << value_tmp << " " << unit_indicator << " equals " << out_temp1 << " meters, " << out_temp2 << " centimeters, " << out_temp3 << " feet, "
         << out_temp4 << " inches."; 
     }
 
     std::cout << std::endl;
 
-    std::cout << "Largest value (in meters): " << temp_biggest_value << "m." << std::endl;
-    std::cout << "Smallest value (in meters): " << temp_smallest_value << "m." << std::endl;
+    std::cout << "Largest value (in meters): " << temp_biggest_value << "m" << std::endl;
+    std::cout << "Smallest value (in meters): " << temp_smallest_value << "m" << std::endl;
 
-    std::cout << "Total sum of the " << no_of_val << " values (in meters): " << total_sum << "m." << std::endl;
+    //the following code outputs all the values converted into meters from the vector
+    std::cout << "\nThe entered values (converted into meters): \n" << "[ ";
+    for (double tval_vector : values_in_meters) { //cycle through every element in values_in_meters and output them
+        std::cout << tval_vector << " ";
+    }
+    std::cout << "]\n" << std::endl;
+
+    std::cout << "Total sum of the " << no_of_val << " values (in meters): " << total_sum << "m" << std::endl;
 
     std::cout << "Total amount of values entered: " << no_of_val << std::endl;
 
