@@ -58,12 +58,25 @@ int main() {
     std::cout << "\nEnter a number, followed by a unit indicator (eg. m, cm, ft, in). " << std::endl;
         
     //values to assign and output later
+    int no_of_val = 0; //number of values entered
     double out_temp1 = 0.0; //meters
     double out_temp2 = 0.0; //centimeters
     double out_temp3 = 0.0; //feet  
     double out_temp4 = 0.0; //inches
+    double total_sum = 0.0; //total sum of values, in meters
 
-    for (double value_tmp = 0; std::cin >> value_tmp >> unit_indicator;) {
+    //reuse temp_smallest_value and temp_biggest_value
+    temp_smallest_value = 0.0;
+    temp_biggest_value = 0.0;
+
+    double previous_value_m = 0.0; //records previous value in meters
+
+    //read values from the input stream (eg. 15cm or 15 cm)
+    //previous_value_m = out_temp1 (if statements below will handily convert values into meters)
+    for (double value_tmp = 0; std::cin >> value_tmp >> unit_indicator; previous_value_m = out_temp1) {
+
+        no_of_val++;
+
         if ((unit_indicator == "m") || (unit_indicator == "M")) {
             out_temp1 = value_tmp;
             out_temp2 = value_tmp * meter_to_cm;
@@ -84,16 +97,35 @@ int main() {
             out_temp2 = value_tmp * inch_to_cm;
             out_temp3 = value_tmp / feet_to_in;
             out_temp4 = value_tmp;
-        } else {
-            std::cout << "No appropriate unit indicator detected. Exit." << std::endl;
+        } else { //unit indicator is not cm, m, ft or in
+            std::cout << "\nNo appropriate unit indicator detected. Exit." << std::endl;
             break; //break out of the loop immediately
         }
+        
+        switch (no_of_val) {
+            case 1: //if no_of_val is at 1, it means the loop is executed for the first time
+                previous_value_m = out_temp1;
+                break;
+            default: //no_of_val is not 1
+                break;
+        }
 
+        total_sum += out_temp1; //store the total sum in meters
+        temp_smallest_value = find_min(out_temp1, previous_value_m);
+        temp_biggest_value = find_max(out_temp1, previous_value_m);
+        
         std::cout << '\n' << value_tmp << " " << unit_indicator << " equals " << out_temp1 << " meters, " << out_temp2 << " centimeters, " << out_temp3 << " feet, "
         << out_temp4 << " inches."; 
     }
 
     std::cout << std::endl;
+
+    std::cout << "Largest value (in meters): " << temp_biggest_value << "m." << std::endl;
+    std::cout << "Smallest value (in meters): " << temp_smallest_value << "m." << std::endl;
+
+    std::cout << "Total sum of the " << no_of_val << " values (in meters): " << total_sum << "m." << std::endl;
+
+    std::cout << "Total amount of values entered: " << no_of_val << std::endl;
 
     return 0;
 }
