@@ -22,7 +22,7 @@ int main() {
     std::cout << std::endl;
 
     //output stuff
-    for (int vctr_counter = 0; (vctr_counter <= (user_names.size() + user_scores.size()) / 2 - 1); vctr_counter++) {
+    for (int vctr_counter = 0; (vctr_counter < (user_names.size() + user_scores.size()) / 2); vctr_counter++) {
         std::cout << user_names[vctr_counter] << " " << user_scores[vctr_counter] << std::endl;
     }
 
