@@ -54,6 +54,8 @@ int main() {
                 break; //exit out of for-loop
             } else if (usr_nms_counter == (user_names.size() - 1)) { //already arriving to last index, no match
                 std::cout << "Not found. " << std::endl;
+
+                //since the for-loop's operating condition is 'true', we have to manually use break;
                 break;
             }
         }
