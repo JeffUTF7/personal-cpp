@@ -1,3 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 project(personal-cpp)
 add_executable(playing_with_numbers src/playing_with_numbers.cpp)
+add_executable(filtering_program src/filtering_program.cpp)
+add_executable(number_guesser src/number_guesser.cpp)
+add_executable(name_and_score src/name_and_score.cpp)
