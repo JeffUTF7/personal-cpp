@@ -18,6 +18,21 @@ int main() {
         }
     }
 
+    for (int i_counter = 0; i_counter < user_names.size(); i_counter++) {
+        for (int inner_i_counter = i_counter + 1; inner_i_counter < user_names.size();inner_i_counter++) {
+            if (user_names[i_counter] == user_names[inner_i_counter]) {
+                std::cout << "Duplicate names found. Please re-enter the username " << user_names[inner_i_counter] << " with the score of "
+                << user_scores[inner_i_counter] << std::endl;
+
+                std::string tmp_user_name_duplicate = " ";
+                std::cin >> tmp_user_name_duplicate;
+                user_names[inner_i_counter] = tmp_user_name_duplicate;
+
+                i_counter--; //recheck the names again just in case user enters the same duplicate name
+            }
+        }
+    }
+
     //make sure nothing remains in output stream
     std::cout << std::endl;
 
