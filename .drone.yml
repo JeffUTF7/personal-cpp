@@ -1,0 +1,16 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: gcc
+  commands:
+  - cmake ./
+  - make
+  
+- name: test
+  image: gcc
+  commands:
+  - ./filtering_program
+  - ./number_guesser
+  - ./name_and_score
