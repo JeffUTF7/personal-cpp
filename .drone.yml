@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: gcc
+  image: gcc-cmake 
   commands:
   - cmake ./
   - make
