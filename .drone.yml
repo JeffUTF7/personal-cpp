@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: build
-  image: gcc-cmake 
+  image: rikorose/gcc-cmake 
   commands:
   - cmake ./
   - make
