@@ -9,7 +9,7 @@ int main() {
 
     int user_score_temp = 0; //default value 0
     for (std::string user_name_temp = " "; std::cin >> user_name_temp >> user_score_temp;) {
-        if (user_name_temp == "NoName" && user_score_temp == 0) {
+        if (user_name_temp == "NoName" && user_score_temp == 0) { 
             //user wants to end input
             break;
         } else {
@@ -42,24 +42,53 @@ int main() {
     }
 
     //request a user name from user
+    char name_or_score_q = 0;
     std::string temp_console_usr_nm = " "; //console input
+    int temp_console_usr_scr = 0;
     while (temp_console_usr_nm != "EXIT") {
-        std::cout << "\n[Console] Enter a name: ";
-        std::cin >> temp_console_usr_nm;
+        std::cout << "\n[Console] Enter [n]ame or [s]core: ";
+        std::cin >> name_or_score_q;
 
-        //search for user name in user_names
-        for (int usr_nms_counter = 0; true; usr_nms_counter++) {
-            if (user_names[usr_nms_counter] == temp_console_usr_nm) { //match
-                std::cout << user_names[usr_nms_counter] << " " << user_scores[usr_nms_counter] << std::endl;
-                break; //exit out of for-loop
-            } else if (usr_nms_counter == (user_names.size() - 1)) { //already arriving to last index, no match
-                std::cout << "Not found. " << std::endl;
+        switch (name_or_score_q) {
+            case 'n':
+                std::cout << "\n[Console] Enter a name: ";
+                std::cin >> temp_console_usr_nm;
 
-                //since the for-loop's operating condition is 'true', we have to manually use break;
+                //search for user name in user_names
+                for (int usr_nms_counter = 0; true; usr_nms_counter++) {
+                    if (user_names[usr_nms_counter] == temp_console_usr_nm) { //match
+                        std::cout << user_names[usr_nms_counter] << " " << user_scores[usr_nms_counter] << std::endl;
+                        break; //exit out of for-loop
+                    } else if (usr_nms_counter == (user_names.size() - 1)) { //already arriving to last index, no match
+                        std::cout << "Not found. " << std::endl;
+
+                        //since the for-loop's operating condition is 'true', we have to manually use break;
+                        break;
+                    }
+                }
                 break;
-            }
-        }
+            case 's':
+                std::cout << "\n[Console] Enter score: ";
+                std::cin >> temp_console_usr_scr;
 
+                //search for specified score in user_scores
+                for (int usr_scr_counter = 0; true; usr_scr_counter++) {
+                    bool one_match_q = false;
+                    if (user_scores[usr_scr_counter] == temp_console_usr_scr) {
+                        one_match_q = true;
+                        std::cout << user_scores[usr_scr_counter] << " " << user_names[usr_scr_counter] << std::endl;
+                    } else if ((one_match_q = false) && (usr_scr_counter == (user_scores.size() -1))) {
+                        std::cout << "Not found. " << std::endl;
+                        break;
+                    } else {
+                        std::cout << "FATAL ERROR. " << std::endl;
+                        break;
+                    }
+
+                    break;
+                }
+                break; 
+        }
     }
 
     std::cout << "Reached end of program. Exit. " << std::endl;
