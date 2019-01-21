@@ -7,11 +7,6 @@ steps:
   commands:
   - cmake ./
   - make
-  
-- name: test
-  image: gcc
-  commands:
-  - make test
 
 - name: gcc-build
   image: gcc
