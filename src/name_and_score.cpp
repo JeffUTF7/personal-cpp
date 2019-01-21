@@ -50,44 +50,49 @@ int main() {
         std::cin >> name_or_score_q;
 
         switch (name_or_score_q) {
-            case 'n':
+            case 'n': {
                 std::cout << "\n[Console] Enter a name: ";
                 std::cin >> temp_console_usr_nm;
 
                 //search for user name in user_names
-                for (int usr_nms_counter = 0; true; usr_nms_counter++) {
-                    if (user_names[usr_nms_counter] == temp_console_usr_nm) { //match
-                        std::cout << user_names[usr_nms_counter] << " " << user_scores[usr_nms_counter] << std::endl;
-                        break; //exit out of for-loop
-                    } else if (usr_nms_counter == (user_names.size() - 1)) { //already arriving to last index, no match
-                        std::cout << "Not found. " << std::endl;
+                bool matching_tr_fa{false};
 
-                        //since the for-loop's operating condition is 'true', we have to manually use break;
-                        break;
+                for (int usr_nms_counter = 0; usr_nms_counter < user_names.size(); usr_nms_counter++) {
+                    if (user_names[usr_nms_counter] == temp_console_usr_nm) { //match
+                        matching_tr_fa = true;
+                        std::cout << user_names[usr_nms_counter] << " " << user_scores[usr_nms_counter] << std::endl;
                     }
                 }
+
+                if (matching_tr_fa == false) { //the if-statement has never been executed through the course of the for-loop
+                    std::cout << "Not found. " << std::endl;
+                }
+                
                 break;
-            case 's':
+            }
+            case 's': {
                 std::cout << "\n[Console] Enter score: ";
                 std::cin >> temp_console_usr_scr;
 
                 //search for specified score in user_scores
-                for (int usr_scr_counter = 0; true; usr_scr_counter++) {
-                    bool one_match_q = false;
+                bool one_match = false;
+                for (int usr_scr_counter = 0; usr_scr_counter < user_scores.size(); ++usr_scr_counter) {
                     if (user_scores[usr_scr_counter] == temp_console_usr_scr) {
-                        one_match_q = true;
+                        one_match = true;
                         std::cout << user_scores[usr_scr_counter] << " " << user_names[usr_scr_counter] << std::endl;
-                    } else if ((one_match_q = false) && (usr_scr_counter == (user_scores.size() -1))) {
-                        std::cout << "Not found. " << std::endl;
-                        break;
-                    } else {
-                        std::cout << "FATAL ERROR. " << std::endl;
-                        break;
-                    }
-
-                    break;
+                    } 
                 }
+
+                if (one_match == false) {
+                    std::cout << "Not found. " << std::endl;
+                }
+
                 break; 
+            }
+            default: {
+                std::cout << "Default. " << std::endl;
+                break;
+            }
         }
     }
 
