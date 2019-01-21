@@ -11,6 +11,9 @@ steps:
 - name: test
   image: gcc
   commands:
-  - ./filtering_program
-  - ./number_guesser
-  - ./name_and_score
+  - make test
+
+- name: gcc-build
+  image: gcc
+  commands:
+    - g++ src/main.cpp
