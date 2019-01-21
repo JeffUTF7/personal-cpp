@@ -11,7 +11,7 @@ steps:
 - name: check
   image: neszt/cppcheck-docker
   commands:
-  - cppcheck src > err.txt
-  
+  - cppcheck src
+
 
 
