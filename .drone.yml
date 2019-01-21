@@ -8,4 +8,10 @@ steps:
   - cmake ./
   - make
 
+- name: check
+  image: neszt/cppcheck-docker
+  commands:
+  - cppcheck src > err.txt
+  
+
 
