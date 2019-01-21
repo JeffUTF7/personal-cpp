@@ -8,7 +8,4 @@ steps:
   - cmake ./
   - make
 
-- name: gcc-build
-  image: gcc
-  commands:
-    - g++ src/main.cpp
+
