@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: rikorose/gcc-cmake
+
+    steps:
+      - run: cmake ./
+      - run: make
+
+  check:
+    docker:
+      - image: neszt/cppcheck-docker
+
+    steps:
+      - run: cppcheck src
