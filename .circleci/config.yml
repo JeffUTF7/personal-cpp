@@ -6,6 +6,7 @@ jobs:
       - image: rikorose/gcc-cmake
 
     steps:
+      - checkout
       - run: cmake ./
       - run: make
 
@@ -14,4 +15,5 @@ jobs:
       - image: neszt/cppcheck-docker
 
     steps:
+      - checkout
       - run: cppcheck src
