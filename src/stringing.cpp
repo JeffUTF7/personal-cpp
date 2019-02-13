@@ -24,6 +24,9 @@ int main() {
 
 	//let's initialize a std::string::size_type object, but with auto
 	auto s3_size = s3.size(); //should be std::string::size_type
+	std::string::size_type s3_size_2 = s3.size(); //do it manually again
+
+	std::cout << "Index 0 of " << s3 << " : " << s3[0] << std::endl;
 
 	std::string s4(20, 'a'); //fun initialization
 	std::cout << s4 << std::endl;
